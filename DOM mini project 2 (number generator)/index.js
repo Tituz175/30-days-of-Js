@@ -36,27 +36,27 @@ for (let index = 0; index <= 101; index++) {
   element.textContent = index;
   element.style.color = "white";
   if (index % 2 == 0) {
-    let fac = 0;
+    let factor = 0;
     for (let b = 2; b < index; b++) {
       if (index % b == 0) {
-        fac = 1;
+        factor = 1;
         break;
       }
     }
-    if (index > 1 && fac == 0) {
+    if (index > 1 && factor == 0) {
       element.style.backgroundColor = "#fd5e53";
     } else {
       element.style.backgroundColor = "#21bf73";
     }
   } else if (index % 2 == 1) {
-    let fac = 0;
+    let factor = 0;
     for (let b = 2; b < index; b++) {
       if (index % b == 0) {
-        fac = 1;
+        factor = 1;
         break;
       }
     }
-    if (index > 1 && fac == 0) {
+    if (index > 1 && factor == 0) {
       element.style.backgroundColor = "#fd5e53";
     } else {
       element.style.backgroundColor = "#fddb3a";
