@@ -29,7 +29,6 @@ for (let index = 0; index <= 101; index++) {
   element.style.width = "16%";
   element.style.display = "inline-block";
   element.style.textAlign = "center";
-  //   element.style.border = "1px solid green";
   element.style.fontSize = "25px";
   element.style.fontWeight = "400";
   element.style.padding = "10px 0px";
