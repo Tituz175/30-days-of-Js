@@ -5,6 +5,12 @@ const subTitle = document.createElement("h2");
 const date = document.createElement("p");
 const listContainer = document.createElement("div");
 const challenges = asabenehChallenges2020.challenges;
+const authorFirstname = asabenehChallenges2020.author.firstName;
+const authorLastname = asabenehChallenges2020.author.lastName;
+const authorTitles = asabenehChallenges2020.author.titles;
+const authorSkills = asabenehChallenges2020.author.skills;
+const authorQualifications = asabenehChallenges2020.author.qualifications;
+const authorSociallinks = asabenehChallenges2020.author.socialLinks;
 
 let colorGenrator = () => {
   let source = "1234567890abcdef";
@@ -56,7 +62,7 @@ const showDateTime = () => {
 };
 
 document.body.style.fontFamily = "Montserrat";
-document.body.style.textAlign = "center";
+// document.body.style.textAlign = "center";
 document.body.style.padding = "0";
 document.body.style.margin = "0";
 
@@ -108,8 +114,8 @@ challenges.forEach((challenge) => {
     if (i == 0) {
       let firstTopic = document.createElement("summary");
       firstTopic.innerHTML = topic;
-      firstTopic.style.margin = "10px auto"
-      firstTopic.style.textAlign = "left"
+      firstTopic.style.margin = "10px auto";
+      firstTopic.style.textAlign = "left";
       challengeTopics.appendChild(firstTopic);
     } else if (i != 0) {
       let otherTopic = document.createElement("p");
@@ -136,7 +142,33 @@ challenges.forEach((challenge) => {
   listContainer.appendChild(challengeContainer);
 });
 
+let authorName = document.createElement("h2");
+authorName.style.fontWeight = "600";
+authorName.textContent = `${authorFirstname} ${authorLastname}`;
+
+let socialContainer = document.createElement("div");
+socialContainer.style.display = "flex";
+socialContainer.style.justifyContent = "center";
+
+authorSociallinks.forEach((social) => {
+  let socialAnchor = document.createElement("a");
+  socialAnchor.setAttribute("href", social.url);
+  socialAnchor.setAttribute("_target", "blank");
+  let socialIcon = document.createElement("i");
+//   socialIcon.innerHTML = social.fontawesomeIcon
+//   socialIcon.innerHTML = social.fontawesomeIcon
+//   socialIcon.setAttribute("class", `${social.fontawesomeIcon.slice(11, -2)}`);
+//   socialAnchor.appendChild(socialIcon)
+socialAnchor.innerHTML = social.fontawesomeIcon
+  socialContainer.appendChild(socialAnchor)
+  console.log(`${social.fontawesomeIcon}`)
+});
+
+wrapper.style.textAlign = "center";
+
 wrapper.appendChild(title);
 wrapper.appendChild(subTitle);
 wrapper.appendChild(date);
 wrapper.appendChild(listContainer);
+wrapper.appendChild(authorName);
+wrapper.appendChild(socialContainer);

@@ -60,7 +60,7 @@ const asabenehChallenges2020 = {
       {
         social: "LinkedIn",
         url: "https://www.linkedin.com/in/asabeneh/",
-        fontawesomeIcon: '<i class="fab fa-linkedin">',
+        fontawesomeIcon: '<i class="fab fa-linkedin"></i>',
       },
       {
         social: "Twitter",
