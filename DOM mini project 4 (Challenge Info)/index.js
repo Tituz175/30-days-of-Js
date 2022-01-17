@@ -13,6 +13,8 @@ const authorQualifications = asabenehChallenges2020.author.qualifications;
 const authorSociallinks = asabenehChallenges2020.author.socialLinks;
 const authorBio = asabenehChallenges2020.author.bio;
 const author = asabenehChallenges2020.author;
+const keywords = asabenehChallenges2020.keywords
+
 
 let colorGenrator = () => {
   let source = "1234567890abcdef";
@@ -96,7 +98,6 @@ date.style.boxSizing = "border-box";
 listContainer.style.width = "50%";
 listContainer.style.margin = "16px auto";
 
-console.log(challenges);
 challenges.forEach((challenge) => {
   let challengeContainer = document.createElement("div");
   challengeContainer.style.display = "flex";
@@ -255,6 +256,32 @@ authorQualifications.forEach((qualification, i) => {
     qualificationsContainer.append(eachQualification)
 });
 
+const footer = document.createElement("footer")
+footer.style.width = "50%"
+footer.style.margin = "0px auto"
+let footerTitle = document.createElement("h4")
+footerTitle.textContent= "Keywords"
+footer.appendChild(footerTitle)
+
+let footerContainer = document.createElement("div")
+footerContainer.style.display = "flex"
+footerContainer.style.flexWrap = "wrap"
+footerContainer.style.paddingLeft = "5%"
+footerContainer.style.boxSizing = "border-box"
+footer.appendChild(footerContainer)
+
+keywords.forEach((word)=>{
+    let wordElement = document.createElement("div")
+    wordElement.style.backgroundColor = colorGenrator()
+    wordElement.style.boxSizing = "border-box"
+    wordElement.style.borderRadius = "10px"
+    wordElement.style.padding = "5px 10px"
+    wordElement.style.margin = "4px auto"
+    wordElement.textContent = `#${word}`
+    footerContainer.append(wordElement)
+})
+
+
 cv.appendChild(titlesContainer);
 cv.appendChild(skillsContainer);
 cv.appendChild(qualificationsContainer);
@@ -269,11 +296,5 @@ wrapper.appendChild(subTitle);
 wrapper.appendChild(date);
 wrapper.appendChild(listContainer);
 wrapper.appendChild(aboutSection);
+wrapper.appendChild(footer)
 
-// wrapper.appendChild(cv)
-
-
-let v = document.querySelectorAll("section div div")
-v.forEach((a)=>{
-    console.log(a)
-})
