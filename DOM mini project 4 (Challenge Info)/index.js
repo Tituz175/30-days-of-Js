@@ -12,6 +12,7 @@ const authorSkills = asabenehChallenges2020.author.skills;
 const authorQualifications = asabenehChallenges2020.author.qualifications;
 const authorSociallinks = asabenehChallenges2020.author.socialLinks;
 
+
 let colorGenrator = () => {
   let source = "1234567890abcdef";
   let color = "#";
@@ -82,6 +83,7 @@ title.appendChild(year);
 subTitle.innerHTML = asabenehChallenges2020.challengeSubtitle;
 subTitle.style.fontWeight = "300";
 subTitle.style.textDecoration = "underline";
+subTitle.style.letterSpacing = "0.0625em";
 
 date.style.padding = "10px";
 date.fontWeight = "400";
@@ -144,6 +146,7 @@ challenges.forEach((challenge) => {
 
 let authorName = document.createElement("h2");
 authorName.style.fontWeight = "600";
+authorName.style.margin = "0px auto"
 authorName.textContent = `${authorFirstname} ${authorLastname}`;
 
 let socialContainer = document.createElement("div");
@@ -152,16 +155,14 @@ socialContainer.style.justifyContent = "center";
 
 authorSociallinks.forEach((social) => {
   let socialAnchor = document.createElement("a");
+  socialAnchor.style.margin = "auto 4px"
+  socialAnchor.style.fontSize = "30px"
+  socialAnchor.style.color = "rgba(0,0,0,0.6)"
   socialAnchor.setAttribute("href", social.url);
-  socialAnchor.setAttribute("_target", "blank");
-  let socialIcon = document.createElement("i");
-//   socialIcon.innerHTML = social.fontawesomeIcon
-//   socialIcon.innerHTML = social.fontawesomeIcon
-//   socialIcon.setAttribute("class", `${social.fontawesomeIcon.slice(11, -2)}`);
-//   socialAnchor.appendChild(socialIcon)
-socialAnchor.innerHTML = social.fontawesomeIcon
-  socialContainer.appendChild(socialAnchor)
-  console.log(`${social.fontawesomeIcon}`)
+  socialAnchor.setAttribute("target", "blank");
+  socialAnchor.innerHTML = social.fontawesomeIcon;
+  socialContainer.appendChild(socialAnchor);
+  console.log(`${social.fontawesomeIcon}`);
 });
 
 wrapper.style.textAlign = "center";
