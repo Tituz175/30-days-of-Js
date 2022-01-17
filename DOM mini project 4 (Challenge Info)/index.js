@@ -112,11 +112,14 @@ subTitle.style.letterSpacing = "0.0625em";
 subTitle.style.textAlign = "center";
 
 // styling the date element (p)
-date.style.padding = "10px";
+date.style.padding = "15px";
 date.fontWeight = "400";
+date.style.fontSize = "16px"
 date.style.margin = "auto auto";
 date.style.width = "12%";
 date.style.boxSizing = "border-box";
+date.style.borderRadius = "5px"
+date.style.textAlign = "center"
 
 // styling the list container for the challenges.
 listContainer.style.width = "50%";
@@ -133,6 +136,7 @@ challenges.forEach((challenge) => {
   challengeContainer.style.fontWeight = "300";
   challengeContainer.style.fontSize = "16px";
   challengeContainer.style.letterSpacing = "0.0625em";
+  challengeContainer.style.borderRadius = "10px"
   let challengeName = document.createElement("div");
   challengeName.innerHTML = challenge.name;
   challengeName.style.display = "flex";
