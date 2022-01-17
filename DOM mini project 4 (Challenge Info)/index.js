@@ -291,7 +291,7 @@ aboutSection.appendChild(cv);
 
 // styling of footer element of the page
 footer.style.width = "45%";
-footer.style.margin = "0px auto";
+footer.style.margin = "0px auto 20px";
 
 // formating and styling of footer title element of the page
 footerTitle.textContent = "Keywords";
