@@ -1,21 +1,35 @@
+// my variables
 const wrapper = document.querySelector(".wrapper");
 const title = document.createElement("h1");
 const year = document.createElement("span");
 const subTitle = document.createElement("h2");
 const date = document.createElement("p");
 const listContainer = document.createElement("div");
+const authorName = document.createElement("h2");
 const challenges = asabenehChallenges2020.challenges;
 const authorFirstname = asabenehChallenges2020.author.firstName;
 const authorLastname = asabenehChallenges2020.author.lastName;
+const socialContainer = document.createElement("div");
+const bioContainer = document.createElement("p");
+const authorBio = asabenehChallenges2020.author.bio;
+const aboutSection = document.createElement("section");
+const cv = document.createElement("div");
+const titlesContainer = document.createElement("div");
+const titleFirstelement = document.createElement("h4");
+const skillsContainer = document.createElement("div");
+const skillFirstelement = document.createElement("h4");
+const qualificationsContainer = document.createElement("div");
+const qualificationFirstelement = document.createElement("h4");
 const authorTitles = asabenehChallenges2020.author.titles;
 const authorSkills = asabenehChallenges2020.author.skills;
 const authorQualifications = asabenehChallenges2020.author.qualifications;
 const authorSociallinks = asabenehChallenges2020.author.socialLinks;
-const authorBio = asabenehChallenges2020.author.bio;
-const author = asabenehChallenges2020.author;
-const keywords = asabenehChallenges2020.keywords
+const footer = document.createElement("footer");
+const footerTitle = document.createElement("h4");
+const footerContainer = document.createElement("div");
+const keywords = asabenehChallenges2020.keywords;
 
-
+// this function generate random hex color
 let colorGenrator = () => {
   let source = "1234567890abcdef";
   let color = "#";
@@ -26,6 +40,8 @@ let colorGenrator = () => {
   }
   return color;
 };
+
+// this function get the time and date
 const showDateTime = () => {
   const months = [
     "January",
@@ -65,39 +81,48 @@ const showDateTime = () => {
   return fullTime + `:${seconds}`;
 };
 
+// setting the whole page font family, padding and margin
 document.body.style.fontFamily = "Montserrat";
 document.body.style.padding = "0";
 document.body.style.margin = "0";
 
+// formating and styling the title element (h1)
+title.innerHTML = `${asabenehChallenges2020.challengeTitle} in `;
+title.style.fontWeight = "500";
+title.appendChild(year);
+title.style.textAlign = "center";
+
+// formatting and styling the year in the title element
 year.innerHTML = asabenehChallenges2020.challengeYear;
 year.style.fontSize = "96px";
 year.style.fontWeight = "700";
+
+// this function set the year color, date background color to a random color and also gets the date and time
 setInterval(() => {
   year.style.color = colorGenrator();
   date.innerHTML = showDateTime();
   date.style.backgroundColor = colorGenrator();
 }, 1000);
 
-title.innerHTML = `${asabenehChallenges2020.challengeTitle} in `;
-title.style.fontWeight = "500";
-title.appendChild(year);
-title.style.textAlign = "center";
-
+// formating and styling the sub title element (h2)
 subTitle.innerHTML = asabenehChallenges2020.challengeSubtitle;
 subTitle.style.fontWeight = "300";
 subTitle.style.textDecoration = "underline";
 subTitle.style.letterSpacing = "0.0625em";
 subTitle.style.textAlign = "center";
 
+// styling the date element (p)
 date.style.padding = "10px";
 date.fontWeight = "400";
 date.style.margin = "auto auto";
 date.style.width = "12%";
 date.style.boxSizing = "border-box";
 
+// styling the list container for the challenges.
 listContainer.style.width = "50%";
 listContainer.style.margin = "16px auto";
 
+// this loop loops through the challenges [] create, format and style the list.
 challenges.forEach((challenge) => {
   let challengeContainer = document.createElement("div");
   challengeContainer.style.display = "flex";
@@ -147,18 +172,18 @@ challenges.forEach((challenge) => {
   listContainer.appendChild(challengeContainer);
 });
 
-let aboutSection = document.createElement("section");
-
-let authorName = document.createElement("h2");
+// formating and styling of the author name
 authorName.style.fontWeight = "600";
 authorName.style.margin = "0px auto";
 authorName.textContent = `${authorFirstname} ${authorLastname}`;
 authorName.style.textAlign = "center";
+aboutSection.appendChild(authorName);
 
-let socialContainer = document.createElement("div");
+// styling of the author social links container
 socialContainer.style.display = "flex";
 socialContainer.style.justifyContent = "center";
 
+// this loop loops through the authorSociallinks [] create, format and style the social icons.
 authorSociallinks.forEach((social) => {
   let socialAnchor = document.createElement("a");
   socialAnchor.style.margin = "auto 4px";
@@ -169,132 +194,128 @@ authorSociallinks.forEach((social) => {
   socialAnchor.innerHTML = social.fontawesomeIcon;
   socialContainer.appendChild(socialAnchor);
 });
+aboutSection.appendChild(socialContainer);
 
-let bioContainer = document.createElement("p");
+// styling the author's bio
 bioContainer.style.width = "45%";
 bioContainer.style.textAlign = "center";
 bioContainer.style.margin = "0px auto";
-bioContainer.style.marginBottom = "40px"
+bioContainer.style.marginBottom = "40px";
 bioContainer.style.padding = "15px 8px 5px";
-bioContainer.style.fontWeight = "400"
+bioContainer.style.fontWeight = "400";
 bioContainer.textContent = authorBio;
+aboutSection.appendChild(bioContainer);
 
-let cv = document.createElement("div");
+// styling the cv element the houses the titles, skills and qualifications of the author.
 cv.style.width = "50%";
 cv.style.display = "flex";
 cv.style.justifyContent = "space-around";
 cv.style.alignItems = "left";
 cv.style.margin = "0px auto";
 
-let titlesContainer = document.createElement("div");
-let titleFirstelement = document.createElement("h4");
-titleFirstelement.style.margin = "8px auto"
+// formating and styling the title first element
+titleFirstelement.style.margin = "8px auto";
 titleFirstelement.textContent = "Titles";
-titleFirstelement.style.fontWeight = "600"
+titleFirstelement.style.fontWeight = "600";
 titlesContainer.appendChild(titleFirstelement);
 
+// this loop loops through the authorTitles [], create and style the author's title elements
 authorTitles.forEach(([icon, title], i) => {
   let eachTitle = document.createElement("div");
-  eachTitle.style.margin = "2px auto"
+  eachTitle.style.margin = "2px auto";
   let iconElement = document.createElement("span");
   let titleElement = document.createElement("span");
   iconElement.textContent = icon;
   titleElement.textContent = title;
-  titleElement.style.fontWeight = "300"
-  titleElement.style.marginLeft = "10px"
+  titleElement.style.fontWeight = "300";
+  titleElement.style.marginLeft = "10px";
   eachTitle.append(iconElement);
   eachTitle.append(titleElement);
   titlesContainer.append(eachTitle);
 });
+cv.appendChild(titlesContainer);
 
-let skillsContainer = document.createElement("div");
-
-let skillFirstelement = document.createElement("h4");
+// formating and styling the skill first element
 skillFirstelement.textContent = "Skills";
-skillFirstelement.style.margin = "8px auto"
-skillFirstelement.style.fontWeight = "600"
+skillFirstelement.style.margin = "8px auto";
+skillFirstelement.style.fontWeight = "600";
 skillsContainer.appendChild(skillFirstelement);
 
+// this loop loops through the authorSkills [], create and style the author's skill elements
 authorSkills.forEach((skill, i) => {
   let checkIcon = "✅";
   let eachSkill = document.createElement("div");
-  eachSkill.style.margin = "2px auto"
+  eachSkill.style.margin = "2px auto";
   let iconElement = document.createElement("span");
   let skillElement = document.createElement("span");
   iconElement.textContent = checkIcon;
   skillElement.textContent = skill;
-  skillElement.style.fontWeight = "300"
-  skillElement.style.marginLeft = "10px"
+  skillElement.style.fontWeight = "300";
+  skillElement.style.marginLeft = "10px";
   eachSkill.append(iconElement);
   eachSkill.append(skillElement);
   skillsContainer.append(eachSkill);
 });
+cv.appendChild(skillsContainer);
 
-let qualificationsContainer = document.createElement("div");
-
-let qualificationFirstelement = document.createElement("h4");
+// formating and styling of the qualification first element
 qualificationFirstelement.textContent = "Qualifications";
-qualificationFirstelement.style.margin = "8px auto"
-qualificationFirstelement.style.fontWeight = "600"
+qualificationFirstelement.style.margin = "8px auto";
+qualificationFirstelement.style.fontWeight = "600";
 qualificationsContainer.appendChild(qualificationFirstelement);
 
+//  this loop loops through the authorQualifications [], create and style the author's qualification elements
 authorQualifications.forEach((qualification, i) => {
   let firstIcon = "📖";
   let restIcon = "👨‍🎓";
   let eachQualification = document.createElement("div");
-  eachQualification.style.margin = "2px auto"
+  eachQualification.style.margin = "2px auto";
   let iconElement = document.createElement("span");
   let qualificationElement = document.createElement("span");
   i == 0
     ? (iconElement.textContent = firstIcon)
     : (iconElement.textContent = restIcon);
-    qualificationElement.textContent = qualification
-    qualificationElement.style.fontWeight = "300"
-    qualificationElement.style.marginLeft = "10px"
-    eachQualification.append(iconElement)
-    eachQualification.append(qualificationElement)
-    qualificationsContainer.append(eachQualification)
+  qualificationElement.textContent = qualification;
+  qualificationElement.style.fontWeight = "300";
+  qualificationElement.style.marginLeft = "10px";
+  eachQualification.append(iconElement);
+  eachQualification.append(qualificationElement);
+  qualificationsContainer.append(eachQualification);
 });
-
-const footer = document.createElement("footer")
-footer.style.width = "50%"
-footer.style.margin = "0px auto"
-let footerTitle = document.createElement("h4")
-footerTitle.textContent= "Keywords"
-footer.appendChild(footerTitle)
-
-let footerContainer = document.createElement("div")
-footerContainer.style.display = "flex"
-footerContainer.style.flexWrap = "wrap"
-footerContainer.style.paddingLeft = "5%"
-footerContainer.style.boxSizing = "border-box"
-footer.appendChild(footerContainer)
-
-keywords.forEach((word)=>{
-    let wordElement = document.createElement("div")
-    wordElement.style.backgroundColor = colorGenrator()
-    wordElement.style.boxSizing = "border-box"
-    wordElement.style.borderRadius = "10px"
-    wordElement.style.padding = "5px 10px"
-    wordElement.style.margin = "4px auto"
-    wordElement.textContent = `#${word}`
-    footerContainer.append(wordElement)
-})
-
-
-cv.appendChild(titlesContainer);
-cv.appendChild(skillsContainer);
 cv.appendChild(qualificationsContainer);
-
-aboutSection.appendChild(authorName);
-aboutSection.appendChild(socialContainer);
-aboutSection.appendChild(bioContainer);
 aboutSection.appendChild(cv);
 
+// styling of footer element of the page
+footer.style.width = "45%";
+footer.style.margin = "0px auto";
+
+// formating and styling of footer title element of the page
+footerTitle.textContent = "Keywords";
+footer.appendChild(footerTitle);
+
+// styling of the footer items container of the page
+footerContainer.style.display = "flex";
+footerContainer.style.flexWrap = "wrap";
+footerContainer.style.paddingLeft = "5%";
+footerContainer.style.boxSizing = "border-box";
+footer.appendChild(footerContainer);
+
+// this loop loops through the keywords [] and create, format and style the footer items
+keywords.forEach((word) => {
+  let wordElement = document.createElement("div");
+  wordElement.style.backgroundColor = colorGenrator();
+  wordElement.style.boxSizing = "border-box";
+  wordElement.style.borderRadius = "10px";
+  wordElement.style.padding = "5px 10px";
+  wordElement.style.margin = "4px auto";
+  wordElement.textContent = `#${word}`;
+  footerContainer.append(wordElement);
+});
+
+// these line of codes shows the major child elements appended to the mother element (.wrapper).
 wrapper.appendChild(title);
 wrapper.appendChild(subTitle);
 wrapper.appendChild(date);
 wrapper.appendChild(listContainer);
 wrapper.appendChild(aboutSection);
-wrapper.appendChild(footer)
-
+wrapper.appendChild(footer);
