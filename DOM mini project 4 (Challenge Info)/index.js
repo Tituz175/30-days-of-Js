@@ -11,7 +11,8 @@ const authorTitles = asabenehChallenges2020.author.titles;
 const authorSkills = asabenehChallenges2020.author.skills;
 const authorQualifications = asabenehChallenges2020.author.qualifications;
 const authorSociallinks = asabenehChallenges2020.author.socialLinks;
-
+const authorBio = asabenehChallenges2020.author.bio;
+const author = asabenehChallenges2020.author;
 
 let colorGenrator = () => {
   let source = "1234567890abcdef";
@@ -63,7 +64,6 @@ const showDateTime = () => {
 };
 
 document.body.style.fontFamily = "Montserrat";
-// document.body.style.textAlign = "center";
 document.body.style.padding = "0";
 document.body.style.margin = "0";
 
@@ -79,11 +79,13 @@ setInterval(() => {
 title.innerHTML = `${asabenehChallenges2020.challengeTitle} in `;
 title.style.fontWeight = "500";
 title.appendChild(year);
+title.style.textAlign = "center";
 
 subTitle.innerHTML = asabenehChallenges2020.challengeSubtitle;
 subTitle.style.fontWeight = "300";
 subTitle.style.textDecoration = "underline";
 subTitle.style.letterSpacing = "0.0625em";
+subTitle.style.textAlign = "center";
 
 date.style.padding = "10px";
 date.fontWeight = "400";
@@ -144,10 +146,13 @@ challenges.forEach((challenge) => {
   listContainer.appendChild(challengeContainer);
 });
 
+let aboutSection = document.createElement("section");
+
 let authorName = document.createElement("h2");
 authorName.style.fontWeight = "600";
-authorName.style.margin = "0px auto"
+authorName.style.margin = "0px auto";
 authorName.textContent = `${authorFirstname} ${authorLastname}`;
+authorName.style.textAlign = "center";
 
 let socialContainer = document.createElement("div");
 socialContainer.style.display = "flex";
@@ -155,21 +160,120 @@ socialContainer.style.justifyContent = "center";
 
 authorSociallinks.forEach((social) => {
   let socialAnchor = document.createElement("a");
-  socialAnchor.style.margin = "auto 4px"
-  socialAnchor.style.fontSize = "30px"
-  socialAnchor.style.color = "rgba(0,0,0,0.6)"
+  socialAnchor.style.margin = "auto 4px";
+  socialAnchor.style.fontSize = "30px";
+  socialAnchor.style.color = "rgba(0,0,0,0.6)";
   socialAnchor.setAttribute("href", social.url);
   socialAnchor.setAttribute("target", "blank");
   socialAnchor.innerHTML = social.fontawesomeIcon;
   socialContainer.appendChild(socialAnchor);
-  console.log(`${social.fontawesomeIcon}`);
 });
 
-wrapper.style.textAlign = "center";
+let bioContainer = document.createElement("p");
+bioContainer.style.width = "45%";
+bioContainer.style.textAlign = "center";
+bioContainer.style.margin = "0px auto";
+bioContainer.style.marginBottom = "40px"
+bioContainer.style.padding = "15px 8px 5px";
+bioContainer.style.fontWeight = "400"
+bioContainer.textContent = authorBio;
+
+let cv = document.createElement("div");
+cv.style.width = "50%";
+cv.style.display = "flex";
+cv.style.justifyContent = "space-around";
+cv.style.alignItems = "left";
+cv.style.margin = "0px auto";
+
+let titlesContainer = document.createElement("div");
+let titleFirstelement = document.createElement("h4");
+titleFirstelement.style.margin = "8px auto"
+titleFirstelement.textContent = "Titles";
+titleFirstelement.style.fontWeight = "600"
+titlesContainer.appendChild(titleFirstelement);
+
+authorTitles.forEach(([icon, title], i) => {
+  let eachTitle = document.createElement("div");
+  eachTitle.style.margin = "2px auto"
+  let iconElement = document.createElement("span");
+  let titleElement = document.createElement("span");
+  iconElement.textContent = icon;
+  titleElement.textContent = title;
+  titleElement.style.fontWeight = "300"
+  titleElement.style.marginLeft = "10px"
+  eachTitle.append(iconElement);
+  eachTitle.append(titleElement);
+  titlesContainer.append(eachTitle);
+});
+
+let skillsContainer = document.createElement("div");
+
+let skillFirstelement = document.createElement("h4");
+skillFirstelement.textContent = "Skills";
+skillFirstelement.style.margin = "8px auto"
+skillFirstelement.style.fontWeight = "600"
+skillsContainer.appendChild(skillFirstelement);
+
+authorSkills.forEach((skill, i) => {
+  let checkIcon = "✅";
+  let eachSkill = document.createElement("div");
+  eachSkill.style.margin = "2px auto"
+  let iconElement = document.createElement("span");
+  let skillElement = document.createElement("span");
+  iconElement.textContent = checkIcon;
+  skillElement.textContent = skill;
+  skillElement.style.fontWeight = "300"
+  skillElement.style.marginLeft = "10px"
+  eachSkill.append(iconElement);
+  eachSkill.append(skillElement);
+  skillsContainer.append(eachSkill);
+});
+
+let qualificationsContainer = document.createElement("div");
+
+let qualificationFirstelement = document.createElement("h4");
+qualificationFirstelement.textContent = "Qualifications";
+qualificationFirstelement.style.margin = "8px auto"
+qualificationFirstelement.style.fontWeight = "600"
+qualificationsContainer.appendChild(qualificationFirstelement);
+
+authorQualifications.forEach((qualification, i) => {
+  let firstIcon = "📖";
+  let restIcon = "👨‍🎓";
+  let eachQualification = document.createElement("div");
+  eachQualification.style.margin = "2px auto"
+  let iconElement = document.createElement("span");
+  let qualificationElement = document.createElement("span");
+  i == 0
+    ? (iconElement.textContent = firstIcon)
+    : (iconElement.textContent = restIcon);
+    qualificationElement.textContent = qualification
+    qualificationElement.style.fontWeight = "300"
+    qualificationElement.style.marginLeft = "10px"
+    eachQualification.append(iconElement)
+    eachQualification.append(qualificationElement)
+    qualificationsContainer.append(eachQualification)
+});
+
+cv.appendChild(titlesContainer);
+cv.appendChild(skillsContainer);
+cv.appendChild(qualificationsContainer);
+
+aboutSection.appendChild(authorName);
+aboutSection.appendChild(socialContainer);
+aboutSection.appendChild(bioContainer);
+aboutSection.appendChild(cv);
 
 wrapper.appendChild(title);
 wrapper.appendChild(subTitle);
 wrapper.appendChild(date);
 wrapper.appendChild(listContainer);
-wrapper.appendChild(authorName);
-wrapper.appendChild(socialContainer);
+wrapper.appendChild(aboutSection);
+
+// wrapper.appendChild(cv)
+
+
+let v = document.querySelectorAll("section div div")
+v.forEach((a)=>{
+    console.log(a)
+})
